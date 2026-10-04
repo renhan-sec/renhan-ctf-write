@@ -1,25 +1,15 @@
 # Undo — General Skills (Easy) | picoCTF 2026
 
-## 题目描述
-Can you reverse a series of Linux text transformations to recover the original flag?
-实例地址：`nc xebec.cylabsacademy.net 43390`（每次启动地址会变）
+## 学到了什么
 
-## 解题过程
-交互式题目：每步给出「变换后的 flag」+ 提示，输入对应的逆向命令。
+这道题一共有五个步骤，对应了四个知识点
 
-| 步骤 | 提示（做了什么变换） | 我的逆向命令 |
-|------|---------------------|--------------|
-| 1 | Base64 编码 | `base64 -d` |
-| 2 | 文本倒序 | `rev` |
-| 3 | 下划线 → 短横线 | `tr '-' '_'` |
-| 4 | 花括号 → 圆括号 | `tr '()' '{}'` |
-| 5 | 字母 ROT13 | `tr 'A-Za-z' 'N-ZA-Mn-za-m'` |
+1. 对于Base64编码的解码操作，`Base64 -d`。
 
-## Flag
-`academy{Revers1ng_t3xt_Tr4nsf0rm@t10ns_050753f6}`
+1. 对于倒序的文本，用`rev`倒回来。
 
-## 学到的东西
-- `base64 -d` 解码、`rev` 倒序
-- `tr '源' '目标'` 字符替换，引号不能省
-- ROT13 是自逆运算（加解密同一条命令）
-- 遇到「被加工过」的数据：先识别特征 → 再做相反操作
+1. 对于密码内符号的替换操作，例如：
+
+    对于Eriref1at-g3kg-Ge4afs0ez@g10af-050753s6，要将里面的横线替换成下划线，需要执行指令`tr '-' '_'
+1. 对于字母密码的位移操作，ROT13即为将每个字母向后位移13位，特点：位移13位字母回到原位置，所以加密和解密用的同一条命令：`tr 'a-zA-Z' 'n-za-mN-ZA-M'`
+

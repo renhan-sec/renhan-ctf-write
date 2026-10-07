@@ -1,0 +1,2 @@
+- user-agent:请求头，用来表示浏览器身份；requests默认python requests会被浏览器识破
+- 412：B站风控反爬虫状态码
